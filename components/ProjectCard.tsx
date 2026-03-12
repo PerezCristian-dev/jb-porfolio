@@ -85,7 +85,7 @@ export default function ProjectCard({ project, index, onClick }: ProjectCardProp
             animate={{ scale: hovered ? 1 : 0.8, opacity: hovered ? 1 : 0 }}
             transition={{ duration: 0.3 }}
           >
-            <svg width="16" height="18" viewBox="0 0 16 18" fill="none" className="ml-1">
+            <svg aria-hidden="true" width="16" height="18" viewBox="0 0 16 18" fill="none" className="ml-1">
               <path d="M1 1L15 9L1 17V1Z" fill="white" />
             </svg>
           </motion.div>

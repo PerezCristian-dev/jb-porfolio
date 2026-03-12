@@ -51,13 +51,6 @@ body {
   height: 100%;
 }
 
-/* Cursor */
-@layer utilities {
-  .cursor-cinematic {
-    cursor: none;
-  }
-}
-
 /* Hero slow zoom animation */
 @keyframes slowZoom {
   from { transform: scale(1.05); }

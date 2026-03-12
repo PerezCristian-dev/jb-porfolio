@@ -113,7 +113,7 @@ export default function Hero() {
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 1.6 }}
         >
-          <span className="text-[10px] tracking-[0.2em] uppercase text-white/40 [writing-mode:vertical-rl]">
+          <span aria-hidden="true" className="text-[10px] tracking-[0.2em] uppercase text-white/40 [writing-mode:vertical-rl]">
             Scroll
           </span>
           <motion.div
@@ -124,13 +124,6 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      {/* Slow zoom keyframe */}
-      <style>{`
-        @keyframes slowZoom {
-          from { transform: scale(1.05); }
-          to   { transform: scale(1.12); }
-        }
-      `}</style>
     </section>
   );
 }

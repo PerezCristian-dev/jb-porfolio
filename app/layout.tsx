@@ -20,6 +20,15 @@ export const metadata: Metadata = {
   },
 };
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "James Brock IV",
+  jobTitle: "Filmmaker & Director",
+  url: "https://jamesbrockiv.com",
+  sameAs: [],
+};
+
 export default function RootLayout({
   children,
 }: {
@@ -27,6 +36,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={inter.variable}>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body>{children}</body>
     </html>
   );

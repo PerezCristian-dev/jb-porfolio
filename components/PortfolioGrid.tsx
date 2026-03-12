@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { motion } from "framer-motion";
 import { projects } from "@/data/projects";
 import ProjectCard from "@/components/ProjectCard";
@@ -9,6 +9,7 @@ import type { Project } from "@/data/projects";
 
 export default function PortfolioGrid() {
   const [activeProject, setActiveProject] = useState<Project | null>(null);
+  const handleClose = useCallback(() => setActiveProject(null), []);
 
   return (
     <>
@@ -40,7 +41,7 @@ export default function PortfolioGrid() {
         </div>
       </section>
 
-      <VideoModal project={activeProject} onClose={() => setActiveProject(null)} />
+      <VideoModal project={activeProject} onClose={handleClose} />
     </>
   );
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import type { Project } from "@/data/projects";
 
@@ -10,19 +10,24 @@ interface VideoModalProps {
 }
 
 export default function VideoModal({ project, onClose }: VideoModalProps) {
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+
+  const handleKey = useCallback((e: KeyboardEvent) => {
+    if (e.key === "Escape") onClose();
+  }, [onClose]);
+
   useEffect(() => {
-    const handleKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
-    };
     if (project) {
       document.addEventListener("keydown", handleKey);
       document.body.style.overflow = "hidden";
+      // Move focus to close button when modal opens
+      setTimeout(() => closeButtonRef.current?.focus(), 50);
     }
     return () => {
       document.removeEventListener("keydown", handleKey);
       document.body.style.overflow = "";
     };
-  }, [project, onClose]);
+  }, [project, handleKey]);
 
   return (
     <AnimatePresence>
@@ -45,6 +50,7 @@ export default function VideoModal({ project, onClose }: VideoModalProps) {
           >
             {/* Close button */}
             <button
+              ref={closeButtonRef}
               onClick={onClose}
               className="absolute -top-10 right-0 text-white/50 hover:text-white transition-colors duration-200 text-xs tracking-[0.2em] uppercase flex items-center gap-2"
             >
